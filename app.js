@@ -28,6 +28,6 @@ app.engine('.hbs', hbs({
 
 app.set('view engine', '.hbs')
 
-app.use('/backend/api', api)
+app.use('/api', api)
 
 module.exports = app
