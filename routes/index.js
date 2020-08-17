@@ -27,123 +27,123 @@ api.post('/logout', userCtrl.logout)
 */
 
 /** Dashboard */
-api.get('/dashboard', auth, dashboardCtrl.getDashboard);
+api.get('/dashboard', dashboardCtrl.getDashboard);
 
 /** Gastos Operativos CRUD */
-api.get('/operating-expenses', auth, operatingExpensesCtrl.getOperatingExpensesArr);
-api.get('/operating-expenses/:id', auth, operatingExpensesCtrl.getOperatingExpenses);
-api.post('/operating-expenses',auth, operatingExpensesCtrl.saveOperatingExpenses);
-api.put('/operating-expenses/:id',auth, operatingExpensesCtrl.updateOperatingExpenses);
-api.delete('/operating-expenses/:id',auth, operatingExpensesCtrl.deleteOperatingExpenses);
+api.get('/operating-expenses', operatingExpensesCtrl.getOperatingExpensesArr);
+api.get('/operating-expenses/:id', operatingExpensesCtrl.getOperatingExpenses);
+api.post('/operating-expenses', operatingExpensesCtrl.saveOperatingExpenses);
+api.put('/operating-expenses/:id', operatingExpensesCtrl.updateOperatingExpenses);
+api.delete('/operating-expenses/:id', operatingExpensesCtrl.deleteOperatingExpenses);
 
 /** Tipos de documento CRUD */
-api.get('/type-documents', auth, typeDocumentCtrl.getTypeDocuments);
-api.get('/type-documents/:id', auth, typeDocumentCtrl.getTypeDocument);
-api.post('/type-documents',auth, typeDocumentCtrl.saveTypeDocument);
-api.put('/type-documents/:id',auth, typeDocumentCtrl.updateTypeDocument);
-api.delete('/type-documents/:id',auth, typeDocumentCtrl.deleteTypeDocument);
+api.get('/type-documents', typeDocumentCtrl.getTypeDocuments);
+api.get('/type-documents/:id', typeDocumentCtrl.getTypeDocument);
+api.post('/type-documents', typeDocumentCtrl.saveTypeDocument);
+api.put('/type-documents/:id', typeDocumentCtrl.updateTypeDocument);
+api.delete('/type-documents/:id', typeDocumentCtrl.deleteTypeDocument);
 
 /** Tipos de cargo CRUD */
-api.get('/type-charges', auth, typeChargeCtrl.getTypeCharges);
-api.get('/type-charges/:id', auth, typeChargeCtrl.getTypeCharge);
-api.post('/type-charges',auth, typeChargeCtrl.saveTypeCharge);
-api.put('/type-charges/:id',auth, typeChargeCtrl.updateTypeCharge);
-api.delete('/type-charges/:id',auth, typeChargeCtrl.deleteTypeCharge);
+api.get('/type-charges', typeChargeCtrl.getTypeCharges);
+api.get('/type-charges/:id', typeChargeCtrl.getTypeCharge);
+api.post('/type-charges', typeChargeCtrl.saveTypeCharge);
+api.put('/type-charges/:id', typeChargeCtrl.updateTypeCharge);
+api.delete('/type-charges/:id', typeChargeCtrl.deleteTypeCharge);
 
 /** Método de pago CRUD */
-api.get('/payment-methods', auth, paymentMethodCtrl.getPaymentMethods);
-api.get('/payment-methods/:id', auth, paymentMethodCtrl.getPaymentMethod);
-api.post('/payment-methods',auth, paymentMethodCtrl.savePaymentMethod);
-api.put('/payment-methods/:id',auth, paymentMethodCtrl.updatePaymentMethod);
-api.delete('/payment-methods/:id',auth, paymentMethodCtrl.deletePaymentMethod);
+api.get('/payment-methods', paymentMethodCtrl.getPaymentMethods);
+api.get('/payment-methods/:id', paymentMethodCtrl.getPaymentMethod);
+api.post('/payment-methods', paymentMethodCtrl.savePaymentMethod);
+api.put('/payment-methods/:id', paymentMethodCtrl.updatePaymentMethod);
+api.delete('/payment-methods/:id', paymentMethodCtrl.deletePaymentMethod);
 
 /** Modalidades de pago CRUD */
-api.get('/payment-modalities', auth, paymentModalityCtrl.getPaymentModalities);
-api.get('/payment-modalities/:id', auth, paymentModalityCtrl.getPaymentModality);
-api.post('/payment-modalities',auth, paymentModalityCtrl.savePaymentModality);
-api.put('/payment-modalities/:id',auth, paymentModalityCtrl.updatePaymentModality);
-api.delete('/payment-modalities/:id',auth, paymentModalityCtrl.deletePaymentModality);
+api.get('/payment-modalities', paymentModalityCtrl.getPaymentModalities);
+api.get('/payment-modalities/:id', paymentModalityCtrl.getPaymentModality);
+api.post('/payment-modalities', paymentModalityCtrl.savePaymentModality);
+api.put('/payment-modalities/:id', paymentModalityCtrl.updatePaymentModality);
+api.delete('/payment-modalities/:id', paymentModalityCtrl.deletePaymentModality);
 
 /** Vehiculos CRUD */
-api.get('/vehicles', auth, vehicleCtrl.getVehicles);
-api.get('/vehicles/:id', auth, vehicleCtrl.getVehicle);
-api.post('/vehicles',auth, vehicleCtrl.saveVehicle);
-api.put('/vehicles/:id',auth, vehicleCtrl.updateVehicle);
-api.delete('/vehicles/:id',auth, vehicleCtrl.deleteVehicle);
+api.get('/vehicles', vehicleCtrl.getVehicles);
+api.get('/vehicles/:id', vehicleCtrl.getVehicle);
+api.post('/vehicles', vehicleCtrl.saveVehicle);
+api.put('/vehicles/:id', vehicleCtrl.updateVehicle);
+api.delete('/vehicles/:id', vehicleCtrl.deleteVehicle);
 
 /** Servicios CRUD */
-api.get('/services',auth, serviceCtrl.getServices);
-api.get('/services/:id',auth, serviceCtrl.getService);
-api.post('/services',auth, serviceCtrl.saveService);
-api.put('/services/:id',auth, serviceCtrl.updateService);
-api.delete('/services/:id',auth, serviceCtrl.deleteService);
+api.get('/services', serviceCtrl.getServices);
+api.get('/services/:id', serviceCtrl.getService);
+api.post('/services', serviceCtrl.saveService);
+api.put('/services/:id', serviceCtrl.updateService);
+api.delete('/services/:id', serviceCtrl.deleteService);
 
 /** Monedas CRUD */
-api.get('/coins',auth, coinCtrl.getCoins);
-api.get('/coins/:id',auth, coinCtrl.getCoin);
-api.post('/coins',auth, coinCtrl.saveCoin);
-api.put('/coins/:id',auth, coinCtrl.updateCoin);
-api.delete('/coins/:id',auth, coinCtrl.deleteCoin);
+api.get('/coins', coinCtrl.getCoins);
+api.get('/coins/:id', coinCtrl.getCoin);
+api.post('/coins', coinCtrl.saveCoin);
+api.put('/coins/:id', coinCtrl.updateCoin);
+api.delete('/coins/:id', coinCtrl.deleteCoin);
 
 /** Sedes CRUD */
-api.get('/seats',auth, seatCtrl.getSeats);
-api.get('/seats/:id',auth, seatCtrl.getSeat);
-api.post('/seats',auth, seatCtrl.saveSeat);
-api.put('/seats/:id',auth, seatCtrl.updateSeat);
-api.delete('/seats/:id',auth, seatCtrl.deleteSeat);
+api.get('/seats', seatCtrl.getSeats);
+api.get('/seats/:id', seatCtrl.getSeat);
+api.post('/seats', seatCtrl.saveSeat);
+api.put('/seats/:id', seatCtrl.updateSeat);
+api.delete('/seats/:id', seatCtrl.deleteSeat);
 
 /** Configuracion CRUD */
-api.get('/configurations',auth, configurationCtrl.getConfigurations);
-api.get('/configurations/:id',auth, configurationCtrl.getConfiguration);
-api.post('/configurations',auth, configurationCtrl.saveConfiguration);
-api.put('/configurations/:id',auth, configurationCtrl.updateConfiguration);
-api.delete('/configurations/:id',auth, configurationCtrl.deleteConfiguration);
+api.get('/configurations', configurationCtrl.getConfigurations);
+api.get('/configurations/:id', configurationCtrl.getConfiguration);
+api.post('/configurations', configurationCtrl.saveConfiguration);
+api.put('/configurations/:id', configurationCtrl.updateConfiguration);
+api.delete('/configurations/:id', configurationCtrl.deleteConfiguration);
 
 /** Cuenta Bancaria CRUD */
-api.get('/bank-accounts',auth, bankCtrl.getBankAccounts);
-api.get('/bank-accounts/:id',auth, bankCtrl.getBankAccount);
-api.post('/bank-accounts',auth, bankCtrl.saveBankAccount);
-api.put('/bank-accounts/:id',auth, bankCtrl.updateBankAccount);
-api.delete('/bank-accounts/:id',auth, bankCtrl.deleteBankAccount);
+api.get('/bank-accounts', bankCtrl.getBankAccounts);
+api.get('/bank-accounts/:id', bankCtrl.getBankAccount);
+api.post('/bank-accounts', bankCtrl.saveBankAccount);
+api.put('/bank-accounts/:id', bankCtrl.updateBankAccount);
+api.delete('/bank-accounts/:id', bankCtrl.deleteBankAccount);
 
 /** Obtener todos los clientes */
-api.get('/clients',auth, clientCtrl.getClients);
+api.get('/clients', clientCtrl.getClients);
 
 /** Cuenta personas juridicas CRUD */
-api.get('/juridicals',auth, clientCtrl.getJuridicals);
-api.get('/juridicals/:id',auth, clientCtrl.getJuridical);
-api.post('/juridicals',auth, clientCtrl.saveJuridical);
-api.put('/juridicals/:id',auth, clientCtrl.updateJuridical);
-api.delete('/juridicals/:id',auth, clientCtrl.deleteJuridical);
+api.get('/juridicals', clientCtrl.getJuridicals);
+api.get('/juridicals/:id', clientCtrl.getJuridical);
+api.post('/juridicals', clientCtrl.saveJuridical);
+api.put('/juridicals/:id', clientCtrl.updateJuridical);
+api.delete('/juridicals/:id', clientCtrl.deleteJuridical);
 
 /** Cuenta personas naturales CRUD */
-api.get('/naturals',auth, clientCtrl.getNaturals);
-api.get('/naturals/:id',auth, clientCtrl.getNatural);
-api.post('/naturals',auth, clientCtrl.saveNatural);
-api.put('/naturals/:id',auth, clientCtrl.updateNatural);
-api.delete('/naturals/:id',auth, clientCtrl.deleteNatural);
+api.get('/naturals', clientCtrl.getNaturals);
+api.get('/naturals/:id', clientCtrl.getNatural);
+api.post('/naturals', clientCtrl.saveNatural);
+api.put('/naturals/:id', clientCtrl.updateNatural);
+api.delete('/naturals/:id', clientCtrl.deleteNatural);
 
 /** Cuenta trabajadores CRUD */
-api.get('/workers',auth, userCtrl.getWorkers);
-api.get('/workers/:id',auth, userCtrl.getWorker);
-api.post('/workers',auth, userCtrl.saveWorker);
-api.put('/workers/:id',auth, userCtrl.updateWorker);
-api.delete('/workers/:id',auth, userCtrl.deleteWorker);
+api.get('/workers', userCtrl.getWorkers);
+api.get('/workers/:id', userCtrl.getWorker);
+api.post('/workers', userCtrl.saveWorker);
+api.put('/workers/:id', userCtrl.updateWorker);
+api.delete('/workers/:id', userCtrl.deleteWorker);
 
 /** Cuenta empleados CRUD */
-api.get('/employees',auth, userCtrl.getEmployees);
-api.get('/employees/:id',auth, userCtrl.getEmployee);
-api.post('/employees',auth, userCtrl.saveEmployee);
-api.put('/employees/:id',auth, userCtrl.updateEmployee);
-api.delete('/employees/:id',auth, userCtrl.deleteEmployee);
+api.get('/employees', userCtrl.getEmployees);
+api.get('/employees/:id', userCtrl.getEmployee);
+api.post('/employees', userCtrl.saveEmployee);
+api.put('/employees/:id', userCtrl.updateEmployee);
+api.delete('/employees/:id', userCtrl.deleteEmployee);
 
 /** order de servicio */
-api.get('/orders',auth, orderCtrl.getOrderServices);
-api.post('/orders',auth, orderCtrl.saveOrderServiceMoment);
+api.get('/orders', orderCtrl.getOrderServices);
+api.post('/orders', orderCtrl.saveOrderServiceMoment);
 
 /** Gastos operativos */
-api.get('/operating-expense-orders/:id',auth, orderCtrl.getOperatingExpensesByPayment);
-api.get('/operating-expense-orders',auth, orderCtrl.getOperatingExpenses);
-api.post('/operating-expense-orders',auth, orderCtrl.saveOperatingExpense);
-api.delete('/operating-expense-orders/:id',auth, orderCtrl.deleteExpenseOrder);
+api.get('/operating-expense-orders/:id', orderCtrl.getOperatingExpensesByPayment);
+api.get('/operating-expense-orders', orderCtrl.getOperatingExpenses);
+api.post('/operating-expense-orders', orderCtrl.saveOperatingExpense);
+api.delete('/operating-expense-orders/:id', orderCtrl.deleteExpenseOrder);
 module.exports = api
