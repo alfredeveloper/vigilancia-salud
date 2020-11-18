@@ -1,259 +1,75 @@
 const User = require('../models/user')
-const Worker = require('../models/worker')
-const Employee = require('../models/employee')
 var bcrypt = require('bcryptjs');
 
-/** Obtener trabajadores */
-function getWorkers(_, res) {
+function getUsers(_, res) {
+    User.find((err, users) => {
+        if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false});
 
-    Worker.find().populate('user').exec((err, workers) => {
-
-        if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false})
-
-        return res.status(201).send(workers)
-
+        return res.status(201).send({message: `Listado de administradores`, status: true, data: users});
     })
-
 }
 
-/** Obtener trabajador */
-function getWorker(req, res) {
-
-    Worker.findOne({user: req.params.id}).populate('user').exec((err, worker)=> {
-
-        if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false})
-
-        return res.status(201).send(worker)
-
-    })
-
-}
-
-/** Registrar trabajador */
-function saveWorker(req, res) {
-    
-    const user = new User(req.body)
-
-    user.save((err, user) => {
-
-        if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false})
-
-        let data = {
-            position: req.body.position,
-            active: true,
-            user: user._id,
-        }
-
-        const worker = new Worker(data)
-
-        worker.save((err, worker) => {
-    
-            if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false})
-    
-            return res.status(201).send({user, worker})
-        })
-
-
-    })
-
-
-}
-
-/** Actualizar trabajador */
-function updateWorker(req, res) {
-
+function getUser(req, res) {
     User.findOne({_id: req.params.id}, (err, user) => {
 
-        if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false})
+        if(err) return res.status(500).send({message: `Error en el servidor ${err}`});
 
-        user.name = req.body.name;
-        user.lastname = req.body.lastname;
-        user.birthday = req.body.birthday;
-        user.dni = req.body.dni;
-        user.phone = req.body.phone;
-        user.address = req.body.address;
+        return res.status(201).send({message: `Administrador encontrado`, status: true, data: user});
 
-        user.save()
-        
-        Worker.findOne({user: req.params.id}, (err, worker) => {
-
-            if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false})
-
-            worker.position = req.body.position
-            
-            worker.save()
-
-            return res.status(201).send({user, worker})
-        })
-    })
-
+    });
 }
 
-/** Activacion / eliminacion trabajador */
-function deleteWorker(req, res) {
+function registerUser(req, res) {
 
-    if(req.query.delete == 'true') {
+    const user = new User(req.body);
+    user['password'] = bcrypt.hashSync(req.body.password, 10);
 
-        Worker.deleteOne({user: req.params.id}, (err, worker) => {
-            
-            if(err) return res.status(201).send({message: `Error en el servidor ${err}`})
+    user.save((err, userCreated) => {
 
-            User.deleteOne({_id: req.params.id}, (err, user) => {
-    
-                if(err) return res.status(500).send({message: `Error en el servidor ${err}`})
+        if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false});
 
-                return res.status(201).send({user, worker})
-
-            })
-        })
-
-    } else {
-
-        Worker.findOne({user: req.params.id}, (err, worker) => {
-    
-            if(err) return res.status(500).send({message: `Error en el servidor ${err}`})
-        
-            worker.active = !worker.active
-            worker.save()
-    
-            return res.status(201).send(worker)
-        })
-    
-    }
-
-}
-
-
-/** Obtener empleados */
-function getEmployees(_, res) {
-
-    Employee.find().populate('user').exec((err, employees) => {
-
-        if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false})
-
-        return res.status(201).send(employees)
+        return res.status(201).send({message: `Administrador registrado`, status: true, data: userCreated});
 
     })
 
 }
 
-/** Obtener empleado */
-function getEmployee(req, res) {
+function updateUser(req, res) {
+    User.findOne({_id: req.params.id}, (err, user) => {
+        if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false});
 
-    Employee.findOne({user: req.params.id}).populate('user').exec((err, employee)=> {
-
-        if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false})
-
-        return res.status(201).send(employee)
-
-    })
-
-}
-
-/** Registrar empleado */
-function saveEmployee(req, res) {
-    
-    const user = new User(req.body)
-
-    user.save((err, user) => {
-
-        if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false})
-
-        let data = {
-            username: req.body.username,
-            password: bcrypt.hashSync(req.body.password, 10),
-            active: true,
-            user: user._id,
+        if(req.body.email) {
+            user.email = req.body.email;
         }
 
-        const employee = new Employee(data)
+        if(req.body.name) {
+            user.name = req.body.name;
+        }
 
-        employee.save((err, employee) => {
-    
-            if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false})
-    
-            return res.status(201).send({user, employee})
-        })
+        if(req.body.lastname) {
+            user.lastname = req.body.lastname;
+        }
 
+        console.log('========== ACTIVE ==========', req.body.active)
+        if(req.body.active) {
+            user.active = !user.active;
+        }
 
+        if(req.body.role) {
+            user.role = req.body.role;
+        }
+
+        user.save();
+
+        return res.status(201).send({message: `Usuario actualizado`, status: true, data: user});
     })
-
-}
-
-/** Actualizar empleado */
-function updateEmployee(req, res) {
-
-    User.findOne({_id: req.params.id}, (err, user) => {
-
-        if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false})
-
-        user.name = req.body.name
-        user.lastname = req.body.lastname
-        user.birthday = req.body.birthday
-        user.dni = req.body.dni
-        user.phone = req.body.phone
-        user.address = req.body.address
-
-        user.save()
-        
-        Employee.findOne({user: req.params.id}, (err, employee) => {
-
-            if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false})
-
-            employee.username = req.body.username
-            employee.password = bcrypt.hashSync(req.body.password, 10)
-
-            employee.save()
-
-            return res.status(201).send({user, employee})
-        })
-    })
-
-}
-
-/** Activacion / eliminacion empleado */
-function deleteEmployee(req, res) {
-
-    if(req.query.delete == 'true') {
-        Employee.deleteOne({user: req.params.id}, (err, employee) => {
-            
-            if(err) return res.status(500).send({message: `Error en el servidor ${err}`})
-
-            User.deleteOne({_id: req.params.id}, (err, user) => {
-    
-                if(err) return res.status(500).send({message: `Error en el servidor ${err}`})
-
-                return res.status(201).send({user, employee})
-
-            })
-        })
-    } else {
-
-        Employee.findOne({user: req.params.id}, (err, employee) => {
-    
-            if(err) return res.status(500).send({message: `Error en el servidor ${err}`})
-        
-            employee.active = !employee.active
-            employee.save()
-    
-            return res.status(201).send(employee)
-        })
-    
-    }
-
 }
 
 module.exports = {
 
-    getWorkers,
-    getWorker,
-    saveWorker,
-    updateWorker,
-    deleteWorker,
-    getEmployees,
-    getEmployee,
-    saveEmployee,
-    updateEmployee,
-    deleteEmployee
+    getUsers,
+    getUser,
+    registerUser,
+    updateUser,
 
 }
