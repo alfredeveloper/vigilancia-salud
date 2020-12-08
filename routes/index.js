@@ -5,6 +5,7 @@ const collaboratorCtrl = require('../controllers/patient')
 const authCtrl = require('../controllers/auth')
 const dashboardCtrl = require('../controllers/dashboard')
 const followsCtrl = require('../controllers/follow_up')
+const resultCtrl = require('../controllers/result')
 
 const auth = require('../middlewares/auth')
 const api = express.Router()
@@ -32,5 +33,11 @@ api.post('/patients/search', collaboratorCtrl.searchPatient);
 api.get('/follows/patient/:id', followsCtrl.getFollowsByPatient);
 api.post('/follows', followsCtrl.registerFollowUp);
 api.put('/follows/:id', followsCtrl.updateFollowUp);
+
+/** Cuenta seguimientos */
+api.get('/autodiagnoses', resultCtrl.getAutodiagnoses);
+api.post('/autodiagnoses', resultCtrl.saveAutodiagnoses);
+api.get('/sworn-declarations', resultCtrl.getSwornDeclarations);
+api.post('/sworn-declarations', resultCtrl.saveSwornDeclaration);
 
 module.exports = api
