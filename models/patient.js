@@ -6,7 +6,7 @@ const PatientSchema = new Schema({
     name: String,
     apaterno: String,
     amaterno: String,
-    dni: Number,
+    dni: {type: Number, unique: true, required: [true, 'DNI requerido']},
     job: String,
     telephone: String,
     birth_date: Date,

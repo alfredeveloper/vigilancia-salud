@@ -1,5 +1,6 @@
 const Patient = require('../models/patient')
 const ClinicalFollowUp = require('../models/clinical_follow_up')
+const Result = require('../models/result')
 
 function getPatients(_, res) {
     Patient.find(async (err, patients) => {
@@ -12,6 +13,13 @@ function getPatients(_, res) {
             
             const followUpFuture = ClinicalFollowUp.find({patient: element._id});
             const respClinicalFollowUp = await followUpFuture.exec();
+
+            console.log('PACIENTE DNI', element['dni']);
+            const resultAutoFurure = Result.find({type: 'AUTODIAGNOSTICO', dni: element['dni']});
+            const respResultAuto = await resultAutoFurure.exec();
+
+            const resultDecFurure = Result.find({type: 'DECLARACION_JURADA', dni: element['dni']});
+            const respResultDec = await resultDecFurure.exec();
     
             patientsFollow.push({
                 _id: element._id,
@@ -30,7 +38,9 @@ function getPatients(_, res) {
                 created_at: element.created_at,
                 updated_at: element.updated_at,
                 __v: element.__v,
-                follow: respClinicalFollowUp
+                follow: respClinicalFollowUp, 
+                resultAuto: respResultAuto ,
+                resultDec: respResultDec
             })
         }
 

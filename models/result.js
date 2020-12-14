@@ -5,6 +5,7 @@ const Schema = mongoose.Schema
 const ResultSchema = new Schema({
     type: {type: String, enum: ['AUTODIAGNOSTICO', 'DECLARACION_JURADA']},
     name: String,
+    dni: Number,
     phone: String,
     company: String,
     diagnosis: String,
