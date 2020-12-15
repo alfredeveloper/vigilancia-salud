@@ -131,37 +131,42 @@ function saveSwornDeclaration(req, res) {
                         pass: 'movilidadmx-2019?', // generated ethereal password
                     },
                 });
-            
-                // send mail with defined transport object
-                let info = await transporter.sendMail({
-                    from: '"Sistema de Vigilancia de Salud y Consultas de Autodiagnóstico y DDJJ." <foo@example.com>', // sender address
-                    to: emailsDoctors, // list of receivers
-                    subject: "RESULTADOS ENCUESTA COVID 19", // Subject line
-                    text: "Hello world?", // plain text body
-                    html: `
-                        <h1>${req.body.type}</h1>
-                        <b>Nombre</b>
-                        <p>${req.body.name}</p>
-                        <b>Apellidos</b>
-                        <p>${req.body.lastname}</p>
-                        <b>Teléfono</b>
-                        <p>${req.body.phone}</p>
-
-                        <br>
-
-                        <h2>Resultado</h2>
-                        <h3>"${req.body.diagnosis}"</h3>
-                    `, // html body
-                });
-            
-                console.log("Message sent: %s", info.messageId);
-                // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-            
-                // Preview only available when sending through an Ethereal account
-                console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-                // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+                
+                try {
+                    // send mail with defined transport object
+                    let info = await transporter.sendMail({
+                        from: '"Sistema de Vigilancia de Salud y Consultas de Autodiagnóstico y DDJJ." <foo@example.com>', // sender address
+                        to: emailsDoctors, // list of receivers
+                        subject: "RESULTADOS ENCUESTA COVID 19", // Subject line
+                        text: "Hello world?", // plain text body
+                        html: `
+                            <h1>${req.body.type}</h1>
+                            <b>Nombre</b>
+                            <p>${req.body.name}</p>
+                            <b>Apellidos</b>
+                            <p>${req.body.lastname}</p>
+                            <b>Teléfono</b>
+                            <p>${req.body.phone}</p>
     
-                return res.status(200).send({message: `Declaración Jurada registrada`, data: response, status: true})         
+                            <br>
+    
+                            <h2>Resultado</h2>
+                            <h3>"${req.body.diagnosis}"</h3>
+                        `, // html body
+                    });
+                
+                    console.log("Message sent: %s", info.messageId);
+                    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+                
+                    // Preview only available when sending through an Ethereal account
+                    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+                    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+        
+                    return res.status(200).send({message: `Declaración Jurada registrada`, data: response, status: true})         
+                    
+                } catch (error) {
+                    return res.status(500).send(error);
+                }
             })
             
         })
