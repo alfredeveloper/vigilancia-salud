@@ -6,6 +6,7 @@ const authCtrl = require('../controllers/auth')
 const dashboardCtrl = require('../controllers/dashboard')
 const followsCtrl = require('../controllers/follow_up')
 const resultCtrl = require('../controllers/result')
+const mailCtrl = require('../controllers/mail')
 
 const auth = require('../middlewares/auth')
 const api = express.Router()
@@ -40,4 +41,6 @@ api.post('/autodiagnoses', resultCtrl.saveAutodiagnoses);
 api.get('/sworn-declarations', resultCtrl.getSwornDeclarations);
 api.post('/sworn-declarations', resultCtrl.saveSwornDeclaration);
 
+/** Enviar email */
+api.get('/sendEmail', mailCtrl.sendMail);
 module.exports = api
