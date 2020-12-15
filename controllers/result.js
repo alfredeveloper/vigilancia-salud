@@ -38,8 +38,8 @@ function saveAutodiagnoses(req, res) {
                     port: 587,
                     secure: false, // true for 465, false for other ports
                     auth: {
-                        user: 'movilidadmx2019@gmail.com', // generated ethereal user
-                        pass: 'movilidadmx-2019?', // generated ethereal password
+                        user: 'devhago@gmail.com', // generated ethereal user
+                        pass: 'systemss32', // generated ethereal password
                     },
                 });
             
@@ -127,8 +127,8 @@ function saveSwornDeclaration(req, res) {
                     port: 587,
                     secure: false, // true for 465, false for other ports
                     auth: {
-                        user: 'movilidadmx2019@gmail.com', // generated ethereal user
-                        pass: 'movilidadmx-2019?', // generated ethereal password
+                        user: 'devhago@gmail.com', // generated ethereal user
+                        pass: 'systemss32', // generated ethereal password
                     },
                 });
                 
