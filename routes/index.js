@@ -7,6 +7,8 @@ const dashboardCtrl = require('../controllers/dashboard')
 const followsCtrl = require('../controllers/follow_up')
 const resultCtrl = require('../controllers/result')
 const mailCtrl = require('../controllers/mail')
+const seedCtrl = require('../controllers/seed')
+const ubigeeCtrl = require('../controllers/ubigeo')
 
 const auth = require('../middlewares/auth')
 const api = express.Router()
@@ -29,6 +31,7 @@ api.get('/patients/:id', collaboratorCtrl.getPatient);
 api.post('/patients', collaboratorCtrl.registerPatient);
 api.put('/patients/:id', collaboratorCtrl.updatePatient);
 api.post('/patients/search', collaboratorCtrl.searchPatient);
+api.get('/patients/document/:document', collaboratorCtrl.searchByDocument);
 
 /** Cuenta seguimientos */
 api.get('/follows/patient/:id', followsCtrl.getFollowsByPatient);
@@ -40,6 +43,13 @@ api.get('/autodiagnoses', resultCtrl.getAutodiagnoses);
 api.post('/autodiagnoses', resultCtrl.saveAutodiagnoses);
 api.get('/sworn-declarations', resultCtrl.getSwornDeclarations);
 api.post('/sworn-declarations', resultCtrl.saveSwornDeclaration);
+
+api.get('/paises', ubigeeCtrl.listarPaises)
+api.get('/departamentos', ubigeeCtrl.listarDepartamentos)
+api.get('/provincias/:departamento', ubigeeCtrl.listarProvincias)
+api.get('/distritos/:provincia', ubigeeCtrl.listarDistritos)
+
+api.get('/seed', seedCtrl.seed);
 
 /** Enviar email */
 api.get('/sendEmail', mailCtrl.sendMail);

@@ -191,6 +191,16 @@ function searchPatient(req, res) {
 
 }
 
+function searchByDocument(req, res) {
+    Patient.findOne({document: req.params.document}).populate('type_document').exec((err, patient) => {
+        if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false})
+
+        if(!patient) return res.status(404).send({message: 'No se encontro al colaborador', status: false})
+        
+        return res.status(200).send({message: 'Colaborador encontrado', data: patient, status: true})
+    })
+}
+
 module.exports = {
     
     getPatients,
@@ -198,5 +208,6 @@ module.exports = {
     registerPatient,
     updatePatient,
     searchPatient,
+    searchByDocument
 
 }
