@@ -14,11 +14,11 @@ function getPatients(_, res) {
             const followUpFuture = ClinicalFollowUp.find({patient: element._id});
             const respClinicalFollowUp = await followUpFuture.exec();
 
-            console.log('PACIENTE DNI', element['dni']);
-            const resultAutoFurure = Result.find({type: 'AUTODIAGNOSTICO', dni: element['dni']});
+            console.log('PACIENTE DNI', element['document']);
+            const resultAutoFurure = Result.find({type: 'AUTODIAGNOSTICO', dni: element['document']});
             const respResultAuto = await resultAutoFurure.exec();
 
-            const resultDecFurure = Result.find({type: 'DECLARACION_JURADA', dni: element['dni']});
+            const resultDecFurure = Result.find({type: 'DECLARACION_JURADA', dni: element['document']});
             const respResultDec = await resultDecFurure.exec();
     
             patientsFollow.push({
@@ -26,15 +26,21 @@ function getPatients(_, res) {
                 name: element.name,
                 apaterno: element.apaterno,
                 amaterno: element.amaterno,
-                dni: element.dni,
+                type_document: element.type_document,
+                document: element.document,
                 job: element.job,
                 telephone: element.telephone,
                 birth_date: element.birth_date,
                 company: element.company,
+                departamento: element.departamento,
+                provincia: element.provincia,
                 district: element.district,
+                address: element.address,
                 start_date: element.start_date,
                 origin: element.origin,
                 control: element.control,
+                confirmation: element.confirmation,
+                clasification: element.clasification,
                 created_at: element.created_at,
                 updated_at: element.updated_at,
                 __v: element.__v,
@@ -61,14 +67,20 @@ function getPatient(req, res) {
             name: patient.name,
             apaterno: patient.apaterno,
             amaterno: patient.amaterno,
-            dni: patient.dni,
+            type_document: patient.type_document,
+            document: patient.document,
             job: patient.job,
             telephone: patient.telephone,
             birth_date: patient.birth_date,
             company: patient.company,
+            departamento: patient.departamento,
+            provincia: patient.provincia,
             district: patient.district,
+            address: patient.address,
             start_date: patient.start_date,
             origin: patient.origin,
+            confirmation: patient.confirmation,
+            clasification: patient.clasification,
             control: patient.control,
             created_at: patient.created_at,
             updated_at: patient.updated_at,
@@ -119,8 +131,12 @@ function updatePatient(req, res) {
             patient.amaterno = req.body.amaterno;
         }
 
-        if(req.body.dni) {
-            patient.dni = req.body.dni;
+        if(req.body.type_document) {
+            patient.type_document = req.body.type_document;
+        }
+
+        if(req.body.document) {
+            patient.document = req.body.document;
         }
 
         if(req.body.job) {
@@ -139,8 +155,20 @@ function updatePatient(req, res) {
             patient.company = req.body.company;
         }
 
+        if(req.body.address) {
+            patient.address = req.body.address;
+        }
+
         if(req.body.district) {
             patient.district = req.body.district;
+        }
+
+        if(req.body.provincia) {
+            patient.provincia = req.body.provincia;
+        }
+
+        if(req.body.departamento) {
+            patient.departamento = req.body.departamento;
         }
 
         if(req.body.start_date) {
@@ -153,6 +181,14 @@ function updatePatient(req, res) {
 
         if(req.body.control) {
             patient.control = req.body.control;
+        }
+
+        if(req.body.confirmation) {
+            patient.confirmation = req.body.confirmation;
+        }
+
+        if(req.body.clasification) {
+            patient.clasification = req.body.clasification;
         }
 
         patient.save();

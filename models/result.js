@@ -4,13 +4,8 @@ const Schema = mongoose.Schema
 
 const ResultSchema = new Schema({
     type: {type: String, enum: ['AUTODIAGNOSTICO', 'DECLARACION_JURADA']},
-    name: String,
-    dni: Number,
-    phone: String,
-    company: String,
-    diagnosis: String,
-    typeResult: {type: String, enum: [1, 2, 3, 4]},
-    results: String
+    result: {type: String, enum: ['NINGUNO','SOSPECHOSO','PROBABLE','SOSPECHOSO_PROBABLE']},
+    patient: {type: Schema.Types.ObjectId, ref: 'Patient', required: [true, 'Referencia de paciente requerido']},
 },{timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}})
 
 module.exports = mongoose.model('Result', ResultSchema)

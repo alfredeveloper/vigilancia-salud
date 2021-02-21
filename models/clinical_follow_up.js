@@ -4,11 +4,11 @@ const Schema = mongoose.Schema
 const ClinicalFollowUpSchema = new Schema({
     
     seguimiento_pot: {type: Boolean},
-    pa: {type: String},
-    fc: {type: Boolean},
-    fr: {type: Boolean},
-    temperatura: {type: String},
-    pulsioximetria: {type: Boolean},
+    pa: {type: Number},
+    fc: {type: Number},
+    fr: {type: Number},
+    temperatura: {type: Number},
+    pulsioximetria: {type: Number},
     tos: {type: Boolean},
     dolor_garganta: {type: Boolean},
     congestion_nasal: {type: Boolean},
@@ -37,8 +37,8 @@ const ClinicalFollowUpSchema = new Schema({
     onoxapirina: {type: String},
     otro_anticoagulatorio: {type: String},
     especificar_medicamento: {type: String},
-    estado_evolucion: {type: String, enum: ['L', 'M', 'S']},
-    condicion_egreso: {type: String, enum: ['RECUPERADO', 'TRASLADO_HOSPITAL', 'TRASLADO_UCI', 'FALLECIDO']},
+    estado_evolucion: {type: String, required: false},
+    condicion_egreso: {type: String, required: false},
     patient: {type: Schema.Types.ObjectId, ref: 'Patient', required: [true, 'Referencia de paciente requerido']},
     
 },{timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}})

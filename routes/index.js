@@ -9,6 +9,7 @@ const resultCtrl = require('../controllers/result')
 const mailCtrl = require('../controllers/mail')
 const seedCtrl = require('../controllers/seed')
 const ubigeeCtrl = require('../controllers/ubigeo')
+const typeDocumentCtrl = require('../controllers/type_document')
 
 const auth = require('../middlewares/auth')
 const api = express.Router()
@@ -48,6 +49,13 @@ api.get('/paises', ubigeeCtrl.listarPaises)
 api.get('/departamentos', ubigeeCtrl.listarDepartamentos)
 api.get('/provincias/:departamento', ubigeeCtrl.listarProvincias)
 api.get('/distritos/:provincia', ubigeeCtrl.listarDistritos)
+
+/** Tipos de documento CRUD */
+api.get('/type-documents', typeDocumentCtrl.index);
+api.get('/type-documents/:id', typeDocumentCtrl.show);
+api.post('/type-documents', typeDocumentCtrl.save);
+api.put('/type-documents/:id', typeDocumentCtrl.update);
+api.delete('/type-documents/:id', typeDocumentCtrl.remove);
 
 api.get('/seed', seedCtrl.seed);
 

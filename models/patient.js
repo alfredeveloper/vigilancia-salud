@@ -16,9 +16,9 @@ const PatientSchema = new Schema({
     district: {type: String, required: [true, 'Distrito requerido']},
     address: {type: String, required: [true, 'Dirección requerido']},
     start_date: Date,
-    origin: {type: String, enum: ['SOSPECHOSO', 'PROBABLE', 'SOSPECHOSO PROBABLE']},
-    confirmation: {type: String, enum: ['CONFIRMADO SINTOMATICO', 'CONFIRMADO ASINTOMATICO', 'DESCARTADO']},
-    clasification: {type: String, enum: ['L', 'S', 'M']},
+    origin: {type: String, required: false},
+    confirmation: {type: String, required: false},
+    clasification: {type: String, required: false},
     control: String,
     type_document: {type: Schema.Types.ObjectId, ref: 'TypeDocument'},
 
