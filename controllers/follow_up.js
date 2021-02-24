@@ -170,7 +170,7 @@ function updateFollowUp(req, res) {
 
         followUp.save();
 
-        return res.status(201).send({message: `Error en el servidor ${err}`, status: true, data: followUp});
+        return res.status(201).send({message: `Seguimiento registrado`, status: true, data: followUp});
     });
 
 }
