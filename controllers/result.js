@@ -19,6 +19,7 @@ function saveAutodiagnoses(req, res) {
         if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false})
         
         patient.origin = req.body.result;
+        patient.confirmation = req.body.confirmation;
         patient.save();
         
         const result = new Result(req.body);
