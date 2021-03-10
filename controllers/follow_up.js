@@ -20,152 +20,156 @@ function updateFollowUp(req, res) {
             followUp.seguimiento_pot = req.body.seguimiento_pot;
         }
 
-        if(followUp.pa) {
+        if(req.body.pa) {
             followUp.pa = req.body.pa;
         }
 
-        if(followUp.cough) {
+        if(req.body.cough) {
             followUp.cough = req.body.cough;
         }
 
-        if(followUp.fc) {
+        if(req.body.fc) {
             followUp.fc = req.body.fc;
         }
 
-        if(followUp.fr) {
+        if(req.body.fr) {
             followUp.fr = req.body.fr;
         }
 
-        if(followUp.temperatura) {
+        if(req.body.temperatura) {
             followUp.temperatura = req.body.temperatura;
         }
 
-        if(followUp.pulsioximetria) {
+        if(req.body.pulsioximetria) {
             followUp.pulsioximetria = req.body.pulsioximetria;
         }
 
-        if(followUp.tos) {
+        if(req.body.tos) {
             followUp.tos = req.body.tos;
         }
 
-        if(followUp.dolor_garganta) {
+        if(req.body.dolor_garganta) {
             followUp.dolor_garganta = req.body.dolor_garganta;
         }
 
-        if(followUp.congestion_nasal) {
+        if(req.body.congestion_nasal) {
             followUp.congestion_nasal = req.body.congestion_nasal;
         }
 
-        if(followUp.fiebre) {
+        if(req.body.fiebre) {
             followUp.fiebre = req.body.fiebre;
         }
 
-        if(followUp.malestar_general) {
+        if(req.body.malestar_general) {
             followUp.malestar_general = req.body.malestar_general;
         }
 
-        if(followUp.dificultad_respiratoria) {
+        if(req.body.dificultad_respiratoria) {
             followUp.dificultad_respiratoria = req.body.dificultad_respiratoria;
         }
 
-        if(followUp.diarrea) {
+        if(req.body.diarrea) {
             followUp.diarrea = req.body.diarrea;
         }
 
-        if(followUp.nausea_vomito) {
+        if(req.body.nausea_vomito) {
             followUp.nausea_vomito = req.body.nausea_vomito;
         }
 
-        if(followUp.cefalea) {
+        if(req.body.cefalea) {
             followUp.cefalea = req.body.cefalea;
         }
 
-        if(followUp.irritabilidad_confusion) {
+        if(req.body.irritabilidad_confusion) {
             followUp.irritabilidad_confusion = req.body.irritabilidad_confusion;
         }
 
-        if(followUp.dolor_muscular) {
+        if(req.body.dolor_muscular) {
             followUp.dolor_muscular = req.body.dolor_muscular;
         }
 
-        if(followUp.dolor_abdominal) {
+        if(req.body.dolor_abdominal) {
             followUp.dolor_abdominal = req.body.dolor_abdominal;
         }
 
-        if(followUp.dolor_pecho) {
+        if(req.body.dolor_pecho) {
             followUp.dolor_pecho = req.body.dolor_pecho;
         }
 
-        if(followUp.dolor_articulaciones) {
+        if(req.body.dolor_articulaciones) {
             followUp.dolor_articulaciones = req.body.dolor_articulaciones;
         }
 
-        if(followUp.otro_signo_sintoma) {
+        if(req.body.otro_signo_sintoma) {
             followUp.otro_signo_sintoma = req.body.otro_signo_sintoma;
         }
 
-        if(followUp.disnea) {
+        if(req.body.disnea) {
             followUp.disnea = req.body.disnea;
         }
 
-        if(followUp.taquipnea) {
+        if(req.body.taquipnea) {
             followUp.taquipnea = req.body.taquipnea;
         }
 
-        if(followUp.saturacion_oxigeno) {
+        if(req.body.saturacion_oxigeno) {
             followUp.saturacion_oxigeno = req.body.saturacion_oxigeno;
         }
 
-        if(followUp.alteracion_conciencia) {
+        if(req.body.alteracion_conciencia) {
             followUp.alteracion_conciencia = req.body.alteracion_conciencia;
         }
 
-        if(followUp.fosfato_cloroquina) {
+        if(req.body.fosfato_cloroquina) {
             followUp.fosfato_cloroquina = req.body.fosfato_cloroquina;
         }
 
-        if(followUp.hidorxicloroquina) {
+        if(req.body.hidorxicloroquina) {
             followUp.hidorxicloroquina = req.body.hidorxicloroquina;
         }
 
-        if(followUp.azitromicina) {
+        if(req.body.azitromicina) {
             followUp.azitromicina = req.body.azitromicina;
         }
 
-        if(followUp.otro_tratamiento_especifico) {
+        if(req.body.otro_tratamiento_especifico) {
             followUp.otro_tratamiento_especifico = req.body.otro_tratamiento_especifico;
         }
 
-        if(followUp.antibiotico) {
+        if(req.body.antibiotico) {
             followUp.antibiotico = req.body.antibiotico;
         }
 
-        if(followUp.antiviral) {
+        if(req.body.antiviral) {
             followUp.antiviral = req.body.antiviral;
         }
 
-        if(followUp.onoxapirina) {
+        if(req.body.onoxapirina) {
             followUp.onoxapirina = req.body.onoxapirina;
         }
 
-        if(followUp.otro_anticoagulatorio) {
+        if(req.body.otro_anticoagulatorio) {
             followUp.otro_anticoagulatorio = req.body.otro_anticoagulatorio;
         }
 
-        if(followUp.especificar_medicamento) {
+        if(req.body.especificar_medicamento) {
             followUp.especificar_medicamento = req.body.especificar_medicamento;
         }
 
-        if(followUp.estado_evolucion) {
+        if(req.body.estado_evolucion) {
             followUp.estado_evolucion = req.body.estado_evolucion;
         }
 
-        if(followUp.condicion_egreso) {
+        if(req.body.condicion_egreso) {
             followUp.condicion_egreso = req.body.condicion_egreso;
         }
 
-        if(followUp.patient) {
+        if(req.body.patient) {
             followUp.patient = req.body.patient;
+        }
+
+        if(req.body.date) {
+            followUp.date = req.body.date;
         }
 
         followUp.save();

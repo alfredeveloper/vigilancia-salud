@@ -40,7 +40,7 @@ const ClinicalFollowUpSchema = new Schema({
     estado_evolucion: {type: String, required: false},
     condicion_egreso: {type: String, required: false},
     patient: {type: Schema.Types.ObjectId, ref: 'Patient', required: [true, 'Referencia de paciente requerido']},
-    
+    date: {type: Date}
 },{timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}})
 
 module.exports = mongoose.model('ClinicalFollowUp', ClinicalFollowUpSchema)
