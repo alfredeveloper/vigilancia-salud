@@ -1,12 +1,20 @@
 const ClinicalFollowUp = require('../models/clinical_follow_up');
+const Patient = require('../models/patient');
 
 function registerFollowUp(req, res) {
     const followUp = new ClinicalFollowUp(req.body);
 
     followUp.save((err, follow) => {
         if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false});
+        
+        Patient.findById(follow.patient, (err, patient) => {
+            if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false});
+            
+            patient.confirmation = req.body.confirmation;
+            patient.save();
 
-        return res.status(201).send({message: 'Seguimiento registrado', status: true, data: follow});
+            return res.status(201).send({message: 'Seguimiento registrado', status: true, data: follow});
+        })
     })
 }
 
@@ -172,9 +180,30 @@ function updateFollowUp(req, res) {
             followUp.date = req.body.date;
         }
 
+        if(req.body.confirmation) {
+            followUp.confirmation = req.body.confirmation;
+        }
+
+        if(req.body.confirmation_code) {
+            followUp.confirmation_code = req.body.confirmation_code;
+        }
+        
         followUp.save();
 
-        return res.status(201).send({message: `Seguimiento registrado`, status: true, data: followUp});
+        if(req.body.confirmation) {
+            Patient.findById(followUp.patient, (err, patient) => {
+                if(err) return res.status(201).send({message: `Error en el servidro ${err}`, status: false});
+                
+                patient.confirmation = req.body.confirmation;
+                patient.save();
+
+                return res.status(201).send({message: `Seguimiento registrado`, status: true, data: followUp});
+
+            })
+        } else {
+            return res.status(201).send({message: `Seguimiento registrado`, status: true, data: followUp});
+        }
+
     });
 
 }
