@@ -103,7 +103,7 @@ function registerPatient(req, res) {
         const followUp = new ClinicalFollowUp(req.body);
 
         followUp["patient"] = patientCreated._id;
-        followUP["confirmation"] = "SIN_CONFIRMAR";
+        followUp["confirmation"] = "SIN_CONFIRMAR";
 
         followUp.save((err, followUpCreated) => {
 
