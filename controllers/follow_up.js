@@ -216,11 +216,11 @@ function getFollowsByPatient(req, res) {
             if(err) return res.status(500).send({message: `Error en el servidor ${err}`, status: false});
             
             let data2 = [{0: 'PA'}, {0: 'FC'}, {0: 'FR'}, {0: 'TEMPERATURA'}, {0: 'PULSIOXIMETRIA'},{0: 'TOS'}, {0: 'DOLOR DE GARGANTA'}, {0: 'CONGESTION NASAL'}, {0: 'FIEBRE'}, {0: 'MALESTAR GENERAL'},{0: 'DIFICULTAD RESPIRATORIA'}, {0: 'DIARREA'}, {0: 'NAUSEA / VOMITO'}, {0: 'CEFALEA'}, {0: 'IRRITABILIDAD / CONFUSION'},{0: 'DOLOR MUSCULAR'}, {0: 'DOLOR ABDOMINAL'}, {0: 'DOLOR DE PECHO'}, {0: 'DOLOR EN ARTICULACIONES'}, {0: 'OTRO'},{0: 'DISNEA'}, {0: 'TAQUIPNEA (>= 22 PM)'}, {0: 'SATURACIÓN DE OXIGENO < 92%'}, {0: 'ALTERACIÓN DE LA CONCIENCIA'}, {0: 'FOSFATO DE CLORIQUINA'},{0: 'HIDORXICLOROQUINA'}, {0: 'HIDORXICLOROQUINA + AZITROMICINA'}, {0: 'OTRO'}, {0: 'ANTIBIÓTICO (especificar)'}, {0: 'ANTIVIRAL (especificar)'},{0: 'ENOXAPARIMA mg'}, {0: 'OTRO (especificar)'}, {0: 'ESPECIFICAR MEDICAMENTO'}, {0: 'ESTADO'}];
-            let headers = ['Indicadores'];
+            let headers = [{created_at: 'Indicadores'}];
 
             for (let index = 0; index < follows.length; index++) {
                 const element = follows[index];
-                headers.push(element.created_at)
+                headers.push(element)
             }
 
             for (let index = 0; index < follows.length; index++) {
